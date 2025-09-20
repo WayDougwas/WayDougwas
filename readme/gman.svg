@@ -22,13 +22,6 @@
       width: 0; /* começo */
     }
 
-    @media (prefers-color-scheme: light) {
-      svg { color: var(--app-text-color, #111111); }
-    }
-    @media (prefers-color-scheme: dark) {
-      svg { color: var(--app-text-color, #ffffff); }
-    }
-
     @keyframes typing {
       from { width: 0; }
       to   { width: 100%; }
