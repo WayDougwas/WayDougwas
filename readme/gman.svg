@@ -1,33 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 40" width="900" height="40" role="img" aria-label="Typing text">
   <style>
-    /* Container visual */
+    /* cor herdada do app via --app-text-color (fallback branco) */
+    svg { color: var(--app-text-color, #ffffff); }
+
+    /* Container visual dentro do foreignObject */
     .wrap {
+      position: relative;
+      width: 900px;
+      height: 40px;
       font-family: 'Courier New', monospace;
       font-size: 20px;
       line-height: 1;
+      overflow: visible;
     }
 
     /* Elemento que será animado como "typing" */
     .typing {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
       display: inline-block;
       white-space: nowrap;
       overflow: hidden;               /* esconde o texto ainda não "digitado" */
-      vertical-align: top;
       box-sizing: content-box;
       border-right: 2px solid #ff8800;  /* cursor */
-      will-change: width;
-      /* Ajuste o número de steps para corresponder ao número de caracteres para um efeito preciso */
-      animation: typing 4s steps(88, end) 0.6s forwards, blink 0.75s step-end infinite, fadeOut 1s 5s forwards;
+      will-change: width, opacity;
+      /* typing: 4s steps -> delay 0.6s; blink: cursor; fadeOut: começa aos 5s e dura 1s */
+      animation: typing 4s steps(88, end) 0.6s forwards,
+                 blink 0.75s step-end 0.6s infinite,
+                 fadeOut 1s 5s forwards;
       width: 0; /* começo */
+      opacity: 1;
+      z-index: 1;
     }
 
-    @media (prefers-color-scheme: light) {
-      svg { color: var(--app-text-color, #111111); }
+    /* A lambda fica centralizada e invisível até aparecer */
+    .lambda {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0.85);
+      font-family: 'Courier New', monospace;
+      font-size: 26px;
+      color: currentColor;
+      opacity: 0;
+      will-change: opacity, transform;
+      pointer-events: none;
+      z-index: 2;
+      /* começa após o fadeOut terminar (fadeOut começa aos 5s e dura 1s => termina aos 6s) */
+      animation: lambdaIn 0.45s ease 6s forwards;
     }
-    @media (prefers-color-scheme: dark) {
-      svg { color: var(--app-text-color, #ffffff); }
-    }
-    
+
     @keyframes typing {
       from { width: 0; }
       to   { width: 100%; }
@@ -37,23 +61,32 @@
       50% { border-right-color: transparent; }
     }
 
+    /* fadeOut deixa a frase opaca (e mantém width caso precise), lambda aparece depois */
     @keyframes fadeOut {
-      from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
+      from { opacity: 1; }
+      to   { opacity: 0; visibility: hidden; }
     }
 
-    
+    @keyframes lambdaIn {
+      from { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+      to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    /* Fallbacks por esquema de cor do sistema (se a variável não estiver definida) */
+    @media (prefers-color-scheme: light) {
+      svg { color: var(--app-text-color, #111111); }
+    }
+    @media (prefers-color-scheme: dark) {
+      svg { color: var(--app-text-color, #ffffff); }
+    }
   </style>
 
-  <!-- Posicione o foreignObject dentro do SVG -->
+  <!-- foreignObject com HTML/CSS (funciona em Chrome/Edge/Firefox modernos) -->
   <foreignObject x="0" y="0" width="900" height="40">
     <div xmlns="http://www.w3.org/1999/xhtml">
       <div class="wrap">
         <span class="typing">"The right man in the wrong place can make all the difference in the world"</span>
+        <span class="lambda">λ</span>
       </div>
     </div>
   </foreignObject>
