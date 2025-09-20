@@ -9,4 +9,7 @@
 
 
 ###
-![texto alternativo](readme/gman.svg)
+<p align="center">
+  <img src="readme/gman.svg" alt="Logo">
+</p>
+
