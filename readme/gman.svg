@@ -43,8 +43,8 @@
       transform: translate(-50%, -50%) scale(0.85);
       font-family: 'Courier New', monospace;
       font-size: 26px;
-      color: currentColor;
       opacity: 0;
+      color: #ff8800;
       will-change: opacity, transform;
       pointer-events: none;
       z-index: 2;
