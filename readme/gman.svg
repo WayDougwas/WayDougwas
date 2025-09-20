@@ -1,25 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1350 100" width="1350" height="100" role="img" aria-label="Typing text">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 100" width="900" height="100" role="img" aria-label="Typing text">
   <style>
-    /* Container visual */
     .wrap {
       font-family: 'Courier New', monospace;
-      font-size: 30px;
+      font-size: 20px;
       line-height: 1;
+      color: currentColor;
     }
 
-    /* Elemento que será animado como "typing" */
     .typing {
       display: inline-block;
       white-space: nowrap;
       overflow: hidden;               /* esconde o texto ainda não "digitado" */
       vertical-align: top;
       box-sizing: content-box;
-      border-right: 2px solid white;  /* cursor */
+      border-right: 2px solid #ff8800;  /* cursor */
       will-change: width;
-      /* Ajuste o número de steps para corresponder ao número de caracteres para um efeito preciso */
+      color: currentColor;
       animation: typing 4s steps(88, end) 0.6s forwards, blink 0.75s step-end infinite, fadeOut 1s 5s forwards;
       width: 0; /* começo */
     }
+    :root { --app-text-color: #111111; }   /* light default */
+    .dark { --app-text-color: #ffffff;}
 
     @keyframes typing {
       from { width: 0; }
@@ -38,19 +39,12 @@
         opacity: 0;
       }
     }
-    
-    @media (prefers-color-scheme: light) {
-      svg { color: var(--app-text-color, #111111); }
-    }
-    @media (prefers-color-scheme: dark) {
-      svg { color: var(--app-text-color, #ffffff); }
-    }
 
     
   </style>
 
   <!-- Posicione o foreignObject dentro do SVG -->
-  <foreignObject x="0" y="0" width="1350" height="40">
+  <foreignObject x="0" y="0" width="900" height="40">
     <div xmlns="http://www.w3.org/1999/xhtml">
       <div class="wrap">
         <span class="typing">"The right man in the wrong place can make all the difference in the world"</span>
