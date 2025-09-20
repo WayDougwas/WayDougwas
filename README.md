@@ -9,3 +9,4 @@
 
 
 ###
+![texto alternativo](readme/gman.svg)
