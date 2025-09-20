@@ -21,8 +21,13 @@
       animation: typing 4s steps(88, end) 0.6s forwards, blink 0.75s step-end infinite, fadeOut 1s 5s forwards;
       width: 0; /* começo */
     }
-    :root { --app-text-color: #111111; }   /* light default */
-    .dark { --app-text-color: #ffffff;}
+    
+    @media (prefers-color-scheme: light) {
+      svg { color: var(--app-text-color, #111111); }
+    }
+    @media (prefers-color-scheme: dark) {
+      svg { color: var(--app-text-color, #ffffff); }
+    }
 
     @keyframes typing {
       from { width: 0; }
