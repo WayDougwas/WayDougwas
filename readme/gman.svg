@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1350 100" width="1350" height="100" role="img" aria-label="Typing text">
+  <style>
+    /* Container visual */
+    .wrap {
+      font-family: 'Courier New', monospace;
+      font-size: 30px;
+      line-height: 1;
+      color: white;
+    }
+
+    /* Elemento que será animado como "typing" */
+    .typing {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;               /* esconde o texto ainda não "digitado" */
+      vertical-align: top;
+      box-sizing: content-box;
+      border-right: 2px solid white;  /* cursor */
+      will-change: width;
+      /* Ajuste o número de steps para corresponder ao número de caracteres para um efeito preciso */
+      animation: typing 4s steps(88, end) 0.6s forwards, blink 0.75s step-end infinite;
+      width: 0; /* começo */
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-right-color: transparent; }
+    }
+  </style>
+
+  <!-- Posicione o foreignObject dentro do SVG -->
+  <foreignObject x="10" y="35" width="1330" height="40">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <div class="wrap">
+        <span class="typing">The right man in the wrong place can make all the difference in the world.</span>
+      </div>
+    </div>
+  </foreignObject>
+</svg>
