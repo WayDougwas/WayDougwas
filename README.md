@@ -10,6 +10,6 @@
 
 ###
 <p align="center">
-  <img src="readme/gman.svg" alt="Logo">
+  <img src="readme/gman.svg" alt="quote">
 </p>
 
